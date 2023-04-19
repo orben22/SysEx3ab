@@ -16,11 +16,11 @@ namespace ariel {
         return {0, 0};
     }
 
-    Fraction Fraction::operator+(float scalar) const {
+    Fraction Fraction::operator+(float num) const {
         return {0, 0};
     }
 
-    Fraction operator+(float scalar, const Fraction &other) {
+    Fraction operator+(float num, const Fraction &other) {
         return {0, 0};
     }
 
@@ -29,11 +29,11 @@ namespace ariel {
         return {0, 0};
     }
 
-    Fraction Fraction::operator-(float scalar) const {
+    Fraction Fraction::operator-(float num) const {
         return {0, 0};
     }
 
-    Fraction operator-(float scalar, const Fraction &other) {
+    Fraction operator-(float num, const Fraction &other) {
         return {0, 0};
     }
 
@@ -50,11 +50,11 @@ namespace ariel {
         return {0, 0};
     }
 
-    Fraction Fraction::operator*(float scalar) const {
+    Fraction Fraction::operator*(float num) const {
         return {0, 0};
     }
 
-    Fraction operator*(float scalar, const Fraction &other) {
+    Fraction operator*(float num, const Fraction &other) {
         return {0, 0};
     }
 
@@ -63,11 +63,11 @@ namespace ariel {
         return {0, 0};
     }
 
-    Fraction Fraction::operator/(float scalar) const {
+    Fraction Fraction::operator/(float num) const {
         return {0, 0};
     }
 
-    Fraction operator/(float scalar, const Fraction &other) {
+    Fraction operator/(float num, const Fraction &other) {
         return {0, 0};
     }
 
