@@ -38,6 +38,5 @@ TEST_CASE("Comparison operators") {
     CHECK(((f1==0.5)&&((f1<=0.5))&&(f1>=0.5)));
     CHECK(((f2==1.5)&&((f2<=1.5))&&(f2>=1.5)));
     CHECK(f2==f3);//check if 3/2==6/4
-
 }
 
