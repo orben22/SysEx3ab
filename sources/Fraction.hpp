@@ -14,6 +14,8 @@ namespace ariel {
 
         Fraction(const Fraction &otherFraction);
 
+        Fraction(Fraction &&other) noexcept;
+
         Fraction();
         //destructor
         ~Fraction();

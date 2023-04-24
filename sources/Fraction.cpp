@@ -198,6 +198,8 @@ namespace ariel {
         return istream;
     }
 
+    Fraction::Fraction(Fraction &&other) noexcept {};
+
 }
 
 
