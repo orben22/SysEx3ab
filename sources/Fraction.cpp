@@ -2,31 +2,50 @@
 
 namespace ariel {
     //constructors
-    Fraction::Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {}
+    Fraction::Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {
+        if (this->denominator==0) throw std::logic_error("the denominator can't be 0");
+        this->reduction();
+    }
 
-    Fraction::Fraction(const Fraction &otherFraction) : numerator(otherFraction.numerator),
-                                                  denominator(otherFraction.denominator) {}
+    Fraction::Fraction(const Fraction &otherFraction)= default;
 
-    Fraction::Fraction() : numerator(0), denominator(1) {};
+    Fraction::Fraction(Fraction &&other) noexcept {
+        this->numerator=other.numerator;
+        this->denominator=other.denominator;
+    }
+
+    Fraction::Fraction() : numerator(0), denominator(1) {};//default constructor
+
+    Fraction::Fraction(float num) {
+        this->numerator=(int)(num*1000);
+        this->denominator=1000;
+        this->reduction();
+    };
 
     Fraction::~Fraction() = default;
 
 //plus methods
     Fraction Fraction::operator+(const Fraction &other) const {
-        return {0, 0};
+        Fraction res((this->numerator*this->denominator)+(other.numerator*this->denominator),this->denominator*other.denominator);
+        res.reduction();
+        return res;
     }
 
     Fraction Fraction::operator+(float num) const {
-        return {0, 0};
+        Fraction temp(num);
+        return *this+temp;
     }
 
     Fraction operator+(float num, const Fraction &other) {
-        return {0, 0};
+        Fraction temp(num);
+        return other+temp;
     }
 
 //subtract methods
     Fraction Fraction::operator-(const Fraction &other) const {
-        return {0, 0};
+        Fraction res((this->numerator*this->denominator)-(other.numerator*this->denominator),this->denominator*other.denominator);
+        res.reduction();
+        return res;
     }
 
     Fraction Fraction::operator-(float num) const {
@@ -198,7 +217,21 @@ namespace ariel {
         return istream;
     }
 
-    Fraction::Fraction(Fraction &&other) noexcept {};
+    int Fraction::gcd() {
+        int min= std::min(this->numerator,this->denominator);
+        int gcd=1;
+        for (int i=2;i<=min;i++) {
+            if (this->numerator % i == 0 && this->denominator % i == 0) gcd = i;
+        }
+        return gcd;
+    }
+
+    void Fraction::reduction() {
+        int mygcd=this->gcd();
+        this->numerator=this->numerator/mygcd;
+        this->denominator=this->denominator/mygcd;
+    }
+
 
 }
 

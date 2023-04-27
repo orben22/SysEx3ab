@@ -16,6 +16,8 @@ namespace ariel {
 
         Fraction(Fraction &&other) noexcept;
 
+        Fraction(float num);
+
         Fraction();
         //destructor
         ~Fraction();
@@ -122,7 +124,9 @@ namespace ariel {
         //input method
         friend std::istream &operator>>(std::istream &istream, Fraction &other);
 
+        int gcd();
 
+        void reduction();
     };
 }
 
