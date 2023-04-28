@@ -49,7 +49,8 @@ namespace ariel {
     }
 
     Fraction Fraction::operator-(float num) const {
-        return {0, 0};
+        Fraction temp(num);
+        return *this-temp;
     }
 
     Fraction operator-(float num, const Fraction &other) {
@@ -66,11 +67,14 @@ namespace ariel {
 
 //multiply methods
     Fraction Fraction::operator*(const Fraction &other) const {
-        return {0, 0};
+        Fraction res(this->numerator*other.numerator,this->denominator*other.denominator);
+        res.reduction();
+        return res;
     }
 
     Fraction Fraction::operator*(float num) const {
-        return {0, 0};
+        Fraction temp(num);
+        return *this*temp;
     }
 
     Fraction operator*(float num, const Fraction &other) {
@@ -79,11 +83,14 @@ namespace ariel {
 
 //divide methods
     Fraction Fraction::operator/(const Fraction &other) const {
-        return {0, 0};
+        Fraction res(this->numerator/other.numerator,this->denominator/other.denominator);
+        res.reduction();
+        return res;
     }
 
     Fraction Fraction::operator/(float num) const {
-        return {0, 0};
+        Fraction temp(num);
+        return *this/temp;
     }
 
     Fraction operator/(float num, const Fraction &other) {
@@ -97,11 +104,14 @@ namespace ariel {
 //comparison methods
 //greater than (>)
     bool Fraction::operator>(const Fraction &other) const {
-        return true;
+        if ((this->numerator*other.denominator)>(other.numerator*this->denominator)) return true;
+        return false;
     }
 
     bool Fraction::operator>(float num) const {
-        return true;
+        Fraction temp(num);
+        if (*this>temp) return true;
+        return false;
     }
 
     bool operator>(float num, const Fraction &other) {
@@ -110,11 +120,14 @@ namespace ariel {
 
 //less than (<)
     bool Fraction::operator<(const Fraction &other) const {
-        return true;
+        if ((this->numerator*other.denominator)<(other.numerator*this->denominator)) return true;
+        return false;
     }
 
     bool Fraction::operator<(float num) const {
-        return true;
+        Fraction temp(num);
+        if (*this<temp) return true;
+        return false;
     }
 
     bool operator<(float num, const Fraction &other) {
@@ -123,11 +136,14 @@ namespace ariel {
 
 //greater or equal (>=)
     bool Fraction::operator>=(const Fraction &other) const {
-        return true;
+        if ((this->numerator*other.denominator)>=(other.numerator*this->denominator)) return true;
+        return false;
     }
 
     bool Fraction::operator>=(float num) const {
-        return true;
+        Fraction temp(num);
+        if (*this>=temp) return true;
+        return false;
     }
 
     bool operator>=(float num, const Fraction &other) {
@@ -136,11 +152,14 @@ namespace ariel {
 
 //less or equal (<=)
     bool Fraction::operator<=(const Fraction &other) const {
-        return true;
+        if ((this->numerator*other.denominator)<=(other.numerator*this->denominator)) return true;
+        return false;
     }
 
     bool Fraction::operator<=(float num) const {
-        return true;
+        Fraction temp(num);
+        if (*this<=temp) return true;
+        return false;
     }
 
     bool operator<=(float num, const Fraction &other) {
@@ -162,11 +181,14 @@ namespace ariel {
 
 //is equal (==)
     bool Fraction::operator==(const Fraction &other) const {
-        return true;
+        if ((!(*this>other))&&(!(*this<other))) return true;
+        return false;
     }
 
     bool Fraction::operator==(float num) const {
-        return true;
+        Fraction temp(num);
+        if (*this==temp) return true;
+        return false;
     }
 
     bool operator==(float num, const Fraction &other) {
