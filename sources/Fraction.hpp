@@ -143,6 +143,14 @@ namespace ariel {
         int gcd() const;
 
         void reduction();
+
+        int getNumerator() const;
+
+        void setNumerator(int num);
+
+        int getDenominator() const;
+
+        void setDenominator(int den);
     };
 }
 

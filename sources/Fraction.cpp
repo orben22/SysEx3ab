@@ -307,6 +307,22 @@ namespace ariel {
         this->numerator=this->numerator/mygcd;
         this->denominator=this->denominator/mygcd;
     }
+
+    int Fraction::getNumerator() const {
+        return numerator;
+    }
+
+    void Fraction::setNumerator(int num) {
+        Fraction::numerator = num;
+    }
+
+    int Fraction::getDenominator() const {
+        return denominator;
+    }
+
+    void Fraction::setDenominator(int den) {
+        Fraction::denominator = den;
+    }
 }
 
 
