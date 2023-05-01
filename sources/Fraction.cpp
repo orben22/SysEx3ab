@@ -3,7 +3,7 @@
 namespace ariel {
     //constructors
     Fraction::Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {
-        if (this->denominator==0) throw std::logic_error("the denominator can't be 0");
+        if (this->denominator==0) throw std::logic_error("the denominator can't be zero");
         this->reduction();
     }
 
@@ -151,8 +151,7 @@ namespace ariel {
 //comparison methods
 //greater than (>)
     bool Fraction::operator>(const Fraction &other) const {
-        if ((this->numerator*other.denominator)>(other.numerator*this->denominator)) return true;
-        return false;
+        return (this->numerator*other.denominator)>(other.numerator*this->denominator);
     }
 
     bool Fraction::operator>(float num) const {
@@ -294,7 +293,7 @@ namespace ariel {
         return istream;
     }
 
-    int Fraction::gcd() {
+    int Fraction::gcd() const {
         int min= std::min(this->numerator,this->denominator);
         int gcd=1;
         for (int i=2;i<=min;i++) {

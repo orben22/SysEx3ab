@@ -140,7 +140,7 @@ namespace ariel {
         //input method
         friend std::istream &operator>>(std::istream &istream, Fraction &other);
 
-        int gcd();
+        int gcd() const;
 
         void reduction();
     };
