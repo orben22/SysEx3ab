@@ -2,6 +2,7 @@
 #define SYSEX3AB_FRACTION_H
 
 #include "ostream"
+#include "iostream"
 
 namespace ariel {
     class Fraction {
@@ -40,10 +41,6 @@ namespace ariel {
 
         friend Fraction operator-(float num, const Fraction &other);
 
-        Fraction operator-(const Fraction &other);
-
-        Fraction operator-() const;
-
         Fraction &operator-=(const Fraction &other);
 
         Fraction &operator-=(float number);
@@ -65,8 +62,6 @@ namespace ariel {
         Fraction operator/(float num) const;
 
         friend Fraction operator/(float num, const Fraction &other);
-
-        Fraction operator/(const Fraction &other);
 
         Fraction &operator/=(const Fraction &other);
 

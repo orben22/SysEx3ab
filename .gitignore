@@ -30,8 +30,3 @@
 *.exe
 *.out
 *.app
-
-# Project exclude paths
-/cmake-build-debug/
-CMakeLists.txt
-README.md
