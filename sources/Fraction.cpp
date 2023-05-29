@@ -19,14 +19,17 @@ namespace ariel {
         this->denominator = other.denominator;
     }
 
-    Fraction::Fraction() : numerator(0), denominator(1) {};//default constructor
+//default constructor
+    Fraction::Fraction() : numerator(0), denominator(1) {};
 
+//float constructor
     Fraction::Fraction(float num) {
         this->numerator = (int) (num * 1000);
         this->denominator = 1000;
         this->reduction();
     };
 
+// dtor
     Fraction::~Fraction() = default;
 
 //plus methods
@@ -35,6 +38,7 @@ namespace ariel {
         long thisdeno = (long) this->denominator;
         long othernume = (long) other.numerator;
         long otherdeno = (long) other.denominator;
+        //overflow checks:
         if ((thisnume * otherdeno + othernume * thisdeno) > std::numeric_limits<int>::max())
             throw std::overflow_error("the numbers are too big");
         if (thisdeno * otherdeno > std::numeric_limits<int>::max())
@@ -73,6 +77,7 @@ namespace ariel {
         long thisdeno = (long) this->denominator;
         long othernume = (long) other.numerator;
         long otherdeno = (long) other.denominator;
+        //overflow checks
         if ((thisnume * otherdeno - othernume * thisdeno) > std::numeric_limits<int>::max())
             throw std::overflow_error("the numbers are too big");
         if (thisdeno * otherdeno > std::numeric_limits<int>::max())
@@ -111,6 +116,7 @@ namespace ariel {
         long thisdeno = (long) this->denominator;
         long othernume = (long) other.numerator;
         long otherdeno = (long) other.denominator;
+        //overflow checks
         if (thisnume * othernume > std::numeric_limits<int>::max())
             throw std::overflow_error("the numbers are too big");
         if (thisdeno * otherdeno > std::numeric_limits<int>::max())
@@ -149,6 +155,7 @@ namespace ariel {
         long thisdeno = (long) this->denominator;
         long othernume = (long) other.numerator;
         long otherdeno = (long) other.denominator;
+        //overflow checks
         if (thisnume * otherdeno > std::numeric_limits<int>::max())
             throw std::overflow_error("the numbers are too big");
         if (thisdeno * othernume > std::numeric_limits<int>::max())
@@ -300,7 +307,7 @@ namespace ariel {
 //increment a fraction:
 //++this
     Fraction &Fraction::operator++() {
-        return *this += Fraction{1,1};
+        return *this += Fraction{1, 1};
     }
 
 //this++
@@ -330,20 +337,25 @@ namespace ariel {
 //input method
     std::istream &operator>>(std::istream &istream, Fraction &other) {
         int nume, deno;
-        istream >> nume;
-        char space;
-        istream.get(space);
-        if (space == ' ') {
-            istream >> deno;
-        } else throw std::runtime_error("try another input");
+        try {
 
-        if (deno < 0) {
-            nume = -nume;
-            deno = -deno;
-        } else if (deno == 0) {
-            throw std::runtime_error("can't divide by zero");
+            istream >> nume;
+            char space;
+            istream.get(space);
+            if (space == ' ') {
+                istream >> deno;
+            } else throw std::runtime_error("try another input");
+
+            if (deno < 0) {
+                nume = -nume;
+                deno = -deno;
+            } else if (deno == 0) {
+                throw std::runtime_error("can't divide by zero");
+            }
         }
-
+        catch (std::runtime_error &e) {
+            std::cout << e.what() << std::endl;
+        }
         other = Fraction(nume, deno);
 
         return istream;
@@ -351,8 +363,8 @@ namespace ariel {
     }
 
     int Fraction::gcd() const {
-        int a=abs(this->numerator);
-        int b=abs(this->denominator);
+        int a = abs(this->numerator);
+        int b = abs(this->denominator);
         while (b != 0) {
             int temp = b;
             b = a % b;

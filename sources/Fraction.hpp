@@ -24,12 +24,14 @@ namespace ariel {
         ~Fraction();
 
         //plus methods
+        //this+other
         Fraction operator+(const Fraction &other) const;
-
+        //this+num
         Fraction operator+(float num) const;
-
+        //num+other
         friend Fraction operator+(float num, const Fraction &other);
 
+        //& for chaining
         Fraction &operator+=(const Fraction &other);
 
         Fraction &operator+=(float number);
@@ -123,6 +125,7 @@ namespace ariel {
         const Fraction operator++(int);
 
         //--this
+
         Fraction &operator--();
 
         //this--

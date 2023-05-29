@@ -18,12 +18,17 @@ run: test1 test2
 demo: Demo.o $(OBJECTS) 
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+demo2: myDemo.cpp $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
 test1: TestRunner.o StudentTest1.o  $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 test2: TestRunner.o StudentTest2.o  $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+test: TestRunner.o Test.cpp  $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 tidy:
 	$(TIDY) $(HEADERS) $(TIDY_FLAGS) --
